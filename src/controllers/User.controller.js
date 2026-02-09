@@ -1,7 +1,6 @@
 import { User } from "../models/User.model.js";
 import jwt from "jsonwebtoken"
 
-
 export const Signup = async (req, res) => {
     try {
         const {username, email, password, role} = req.body;
@@ -90,3 +89,35 @@ export const logout = async (req, res) => {
     }
 }
 
+export const GoogleSignUp = async (oauthUser) => {
+    try {
+        const {email, provider, providerId, username} = oauthUser;
+    
+        let user = await User.findOne({
+            [`providers.${provider}`]: providerId   
+        })
+    
+        if (user) return user
+    
+        user = await User.findOne({email})
+    
+        if(user) {
+            user.providers[provider] = providerId
+            await user.save()
+            return user
+        }
+    
+        user = await User.create({
+            email, 
+            username,
+            providers: {
+                [provider]: providerId
+            }
+        })
+    
+        return user
+
+    } catch (error) {
+        return error
+    } 
+}

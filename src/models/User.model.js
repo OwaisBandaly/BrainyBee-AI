@@ -17,7 +17,15 @@ const userSchema = new Schema({
     },
     password: {
         type: String,
-        required: [true, "Password is required."],
+        required: false
+    },
+    providers: {
+        google: {
+            type: String
+        },
+        github: {
+            type: String
+        }
     },
     role: {
         type: String,
