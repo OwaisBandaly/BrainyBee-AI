@@ -155,7 +155,7 @@ export const setPassword = async (req, res) => {
 export const myInfo = async (req, res) => {
     try {
         const user = await User.findById(req.user._id).select("-password -providers")
-        console.log(user);
+        
         if(!user) throw new Error("No user found.")
         
         return res.status(200).json({data: user})

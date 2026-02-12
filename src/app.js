@@ -14,7 +14,9 @@ app.use(express.static("public"));
 app.use(passport.initialize())
 
 import userRoute from "./routes/User.route.js"
+import quizRoute from "./routes/Quiz.route.js"
 
 app.use("/api/user", userRoute)
+app.use("/api/quiz", quizRoute)
 
 export default app 
