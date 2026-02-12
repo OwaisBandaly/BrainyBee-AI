@@ -35,6 +35,9 @@ const attemptSchema = new Schema({
         type: Number,
         required: true
     },
+    percentage: {
+        type: Number
+    },
     totalQuestions: {
       type: Number,
       required: true

@@ -15,8 +15,10 @@ app.use(passport.initialize())
 
 import userRoute from "./routes/User.route.js"
 import quizRoute from "./routes/Quiz.route.js"
+import attemptRouter from "./routes/Attempt.route.js"
 
 app.use("/api/user", userRoute)
 app.use("/api/quiz", quizRoute)
+app.use("/api/attempt", attemptRouter)
 
 export default app 
